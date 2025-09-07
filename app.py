@@ -25,11 +25,8 @@ if uploaded_file is not None:
         query = st.text_input("Ask a question about the PDF:")
         if query:
             with st.spinner("Generating answer..."):
-                # Retrieve relevant chunks
-                relevant_chunks = qdrant.similarity_search(query, k=3)
-
-                # Generate the answer using RAG
-                answer = rag.generate_answer(query, relevant_chunks)
+                # ✅ Just call RAG (it handles retrieval itself)
+                answer = rag.generate_answer(query)
 
                 st.write("**Answer:**")
                 st.write(answer)
